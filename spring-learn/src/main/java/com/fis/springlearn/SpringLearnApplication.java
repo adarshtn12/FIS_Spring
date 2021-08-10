@@ -25,6 +25,17 @@ public class SpringLearnApplication {
 //		displayCountries();
 //		displayEmployee();
 		getEmployeeController();
+//		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(EmployeeController.class);
+//		displayEmployeeControllerAnnotation(applicationContext);
+	}
+ 
+    public static void displayEmployeeControllerAnnotation(ApplicationContext applicationContext) {
+		LOGGER.info("START");
+		EmployeeController employeeController = applicationContext.getBean("employeeController",
+				EmployeeController.class);
+		LOGGER.debug("EmployeeController : {}", employeeController);
+		LOGGER.info("END");
+
 	}
  
     static void getEmployeeController() {
