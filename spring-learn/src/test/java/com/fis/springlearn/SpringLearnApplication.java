@@ -2,6 +2,7 @@ package com.fis.springlearn;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,15 +17,26 @@ public class SpringLearnApplication {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SpringLearnApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringLearnApplication.class, args);
-		displayDate();
-		displayCountry();
+//		SpringApplication.run(SpringLearnApplication.class, args);
+//		displayDate();
+//		displayCountry();
+		displayCountries();
+	}
+	
+	static void displayCountries() {
+		LOGGER.info("START");
+		ApplicationContext context = new ClassPathXmlApplicationContext("country.xml");
+		ArrayList<Country> countries = context.getBean("countryList", ArrayList.class);
+		LOGGER.debug("Countries : {}", countries);
+		LOGGER.info("END");
 	}
 
 	static void displayCountry() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("country.xml");
 		Country country = context.getBean("country", Country.class);
+		Country anotherCountry = context.getBean("country", Country.class);
 		LOGGER.debug("Country : {}", country.toString());
+		LOGGER.debug("Country : {}", anotherCountry);
 
 	}
 
@@ -40,14 +52,14 @@ public class SpringLearnApplication {
 			e.printStackTrace();
 		}
 
-		SimpleDateFormat format1 = context.getBean("dateFormat1", SimpleDateFormat.class);
-		try {
-			Date parseDate1 = format1.parse("08/09/2021");
+//		SimpleDateFormat format1 = context.getBean("dateFormat1", SimpleDateFormat.class);
+//		try {
+//			Date parseDate1 = format1.parse("08/09/2021");
 //			System.out.println(parseDate1);
-			LOGGER.debug(parseDate1.toString());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//			LOGGER.debug(parseDate1.toString());
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		LOGGER.info("END");
 	}
 
