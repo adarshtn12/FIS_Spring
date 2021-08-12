@@ -1,9 +1,8 @@
-package com.fis.springjpa;
+package com.fis.springsecurity.user;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,5 +59,5 @@ public class MainController {
   public @ResponseBody Iterable<User> getAllUsers() {
     // This returns a JSON or XML with the users
     return userRepository.findAll();
-  }
+}
 }
